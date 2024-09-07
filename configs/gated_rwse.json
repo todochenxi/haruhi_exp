@@ -1,0 +1,59 @@
+{
+  "gpu": {
+      "use": true,
+      "id": 0
+  },
+  "dataset": "ICEWS14s",
+  "out_dir": "models/gatedgcn_icews14s_rw",
+
+  "params": {
+    "lr": 0.001,
+    "seed": 41,
+    "batch_size": 1,
+    "topk": 10,
+    "multi_step": true,
+    "relation_evaluation": false,
+    "num_epochs": 20,
+    "evaluate-every": 1,
+    "train_history_len": 3,
+    "test_history_len": 3,
+    "grid_search": false,
+    "tune": "n_hidden, n_layers, dropout",
+    "num_k": 500,
+    "task_weight": 0.7,
+    "test": false,
+    "grad_norm": 1
+  },
+  "gnn": {
+    "name": "gatedgcn",
+    "net_params": {
+      "num_layers": 3,
+      "hidden_dim": 200,
+      "out_dim": 200,
+      "residual": true,
+      "in_feat_dropout": 0.0,
+      "dropout": 0.1,
+      "batch_norm": true,
+      "alpha_loss": 1e-3,
+      "lambda_loss": 100,
+      "use_lapeig_loss": false,
+      "add_static_graph": false,
+      "readout": "mean",
+      "entity_prediction": true,
+      "relation_prediction": true,
+      "layer_norm": true
+    }
+
+  },
+  "decoder": {
+    "name": "convtranse",
+    "input_dropout": 0,
+    "hidden_dropout": 0,
+    "feat_dropout": 0
+  },
+  "pe_init": {
+    "name": "rand_walk",
+    "pe_dim": 3
+  }
+}
+
